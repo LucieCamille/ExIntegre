@@ -5,6 +5,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
+    <h1>Prout</h1>
     <nav>
       <RouterLink to="/">StartGame</RouterLink>
       <RouterLink to="/board">Board</RouterLink>
