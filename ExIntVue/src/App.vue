@@ -1,11 +1,16 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { useGameStore } from '@/stores/game';
+
+const gameStore = useGameStore();
+//test appel api
+gameStore.getDatasApi()
 
 </script>
 
 <template>
   <header>
-    <h1>Prout</h1>
+    <h1>Serious Game</h1>
     <nav>
       <RouterLink to="/">StartGame</RouterLink>
       <RouterLink to="/board">Board</RouterLink>

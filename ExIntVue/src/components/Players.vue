@@ -5,8 +5,14 @@
   const props = defineProps(['ident'])
   const theJoueur = gameStore.oneJoueur(props.ident)
 
+  const emits = defineEmits(["clickJoueur"])
+
+  const alertParent = () => emits('clickJoueur', props.ident)
+  
+
 </script>
 
 <template>
-  <h3> {{theJoueur}} </h3>
+  <h3> {{theJoueur.name}} </h3>
+  <a href="#" @click.prevent="alertParent">Click me</a>
 </template>
