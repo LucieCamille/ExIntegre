@@ -6,14 +6,27 @@ export const useGameStore = defineStore( {
   id: 'game',
   state: ()  => ({
     joueurs: ref([
-      {
+      /*{
         name: "",
         score: 0,
         position: -1,
         isPlaying: false
+      }*/
+      {
+        name: "Luce",
+        score: 0,
+        position: 1,
+        isPlaying: false
+      },
+      {
+        name: "Math",
+        score: 0,
+        position: 2,
+        isPlaying: true
       }
-    ]),
-    datasApi: ref([])
+   ]),
+    datasApi: ref([]),
+    diceResult: 0,
   }),
   getters: {
     allJoueurs: (state) => {
@@ -24,14 +37,22 @@ export const useGameStore = defineStore( {
     },
     allDatasApi: (state) => {
       return state.datasApi
+    },
+    getDiceResult: (state) => {
+      return state.diceResult
     }
   },
   actions: {
+    //add members or a member
     addMembers(members) {
       this.joueurs = [...members]
     },
     addAMembers(member) {
       this.joueurs.push(member)
+    },
+    //change position of a player:
+    changePosition(player, position) {
+      this.joueurs[player].position = position;
     },
     //fetch
     async getDatasApi() {
@@ -42,6 +63,11 @@ export const useGameStore = defineStore( {
       })
       this.datasApi = [...results]
       //console.log(results)
+    },
+    //dice
+    rollDice() {
+      this.diceResult = Math.floor(Math.random() * 6) + 1;
+      console.log(this.diceResult)
     }
   }
 })
