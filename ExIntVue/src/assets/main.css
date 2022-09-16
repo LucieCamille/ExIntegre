@@ -35,6 +35,29 @@ a,
   background-color: var(--color-border-hover);
 }
 
+.order_list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.order_item {
+margin: 10px;
+padding: 15px;
+border: 1px solid var(--color-border);
+background: var(--color-border-hover);
+
+}
+
+/* (B) DRAG-AND-DROP HINT */
+.order_item.hint {
+border: 1px solid #ffc49a;
+background: #feffb4;
+}
+.order_item.active {
+border: 1px solid #ffa5a5;
+background: #ffe7e7;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

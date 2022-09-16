@@ -2,6 +2,8 @@
   import { ref } from 'vue'
 
   const props = defineProps(['question'])
+  //definition de emit
+  const emits = defineEmits(["clickValidate"])
 
   //console.log(props.question.response)
   const validAnswers = props.question.response.validAnswers
@@ -9,18 +11,18 @@
 
   //pousser les réponse sélectionnée dans un array
   const checkedAnswers = ref([])
+
+  //émettre au parent si validé ou non
+  const alertParent = (value) => emits('clickValidate', value)
   
   const handleClickValidate = () => {
     //console.log(checkedAnswers.value)
     //vérifier si les réponse sélectionnées sont identiques à validAnswer
-    const isValid = JSON.stringify(checkedAnswers.value) === JSON.stringify(validAnswers)
+    const isValid = JSON.stringify(checkedAnswers.value.sort()) === JSON.stringify(validAnswers.sort())
     //console.log(isValid)
 
-    //si oui: return true et ajouter +1 au player isPlaying true (emit)
-    //si non: return false
-
-    //dans les deux cas: marquer la case comme visited + passer au joueur suivant (boucler sur les joueurs et changer isPlaying du joueur suivant)
-
+    //appeler fonction emit
+    alertParent(isValid)
   }
 
 </script>

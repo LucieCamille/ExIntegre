@@ -10,23 +10,23 @@ export const useGameStore = defineStore( {
         name: "",
         score: 0,
         position: -1,
-        isPlaying: false
+        isPlaying: true
       }*/
       {
         name: "Luce",
         score: 0,
-        position: 1,
+        position: 0,
         isPlaying: false
       },
       {
         name: "Math",
         score: 0,
-        position: 2,
+        position: 1,
         isPlaying: true
       }
    ]),
     datasApi: ref([]),
-    diceResult: 0,
+    diceResult: ref(0),
   }),
   getters: {
     allJoueurs: (state) => {
@@ -51,8 +51,22 @@ export const useGameStore = defineStore( {
       this.joueurs.push(member)
     },
     //change position of a player:
-    changePosition(player, position) {
-      this.joueurs[player].position = position;
+    changePosition(pIndex, position) {
+      this.joueurs[pIndex].position = position;
+    },
+    //add a score point to a player:
+    setScore(pIndex) {
+      this.joueurs[pIndex].score++
+    },
+    //change player turn with isPlaying = true ()
+    setIsPlaying(cpi, ncpi){
+      if(cpi < this.joueurs.length -1) {
+        this.joueurs[ncpi].isPlaying = true;
+        this.joueurs[cpi].isPlaying = false;
+      } else {
+        this.joueurs[0].isPlaying = true;
+        this.joueurs[cpi].isPlaying = false;
+      }
     },
     //fetch
     async getDatasApi() {
@@ -64,10 +78,14 @@ export const useGameStore = defineStore( {
       this.datasApi = [...results]
       //console.log(results)
     },
+    //changer used en true
+    setUsed(bIndex) {
+      this.datasApi[bIndex].used = true;
+    },
     //dice
     rollDice() {
       this.diceResult = Math.floor(Math.random() * 6) + 1;
-      console.log(this.diceResult)
+      //console.log(this.diceResult)
     }
   }
 })

@@ -10,7 +10,7 @@
     {
       name: "Luce",
       score: 0,
-      position: -1,
+      position: 0,
       isPlaying: false
     },
     {

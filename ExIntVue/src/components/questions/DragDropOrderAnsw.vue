@@ -2,8 +2,9 @@
   //ordre
   const props = defineProps(['question'])
 
+  const originalList = props.question.response.answers
   let shuffledList = []
-  props.question.response.answers.forEach((s) =>
+  originalList.forEach((s) =>
     Math.random() > 0.5 ? shuffledList.push(s) : shuffledList.unshift(s)
   );
 

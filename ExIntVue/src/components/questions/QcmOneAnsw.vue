@@ -1,6 +1,8 @@
 <script setup>
   import { ref } from 'vue'
   const props = defineProps(['question'])
+  //definition de emit
+  const emits = defineEmits(["clickValidate"])
 
   //console.log(props.question.response)
   const validAnswers = props.question.response.validAnswers
@@ -8,6 +10,9 @@
 
   //pousser les réponse sélectionnée dans un array
   const pickedAnswer = ref()
+
+  //émettre au parent si validé ou non
+  const alertParent = (value) => emits('clickValidate', value)
   
   const handleClickValidate = () => {
     //console.log(pickedAnswer.value)
@@ -15,6 +20,8 @@
     const isValid = pickedAnswer.value === validAnswers[0]
     //console.log(isValid)
 
+    //appeler fonction emit
+    alertParent(isValid)
   }
 
 </script>
@@ -26,8 +33,3 @@
   <button class="form_btn" @click.prevent="handleClickValidate">Validate</button>
 </form>
 </template>
-
-
-<style scoped>
-
-</style>

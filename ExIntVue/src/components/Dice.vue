@@ -8,6 +8,7 @@
 
   const handleClickDice = () => {
     //lancer la fonction de roll the dice
+    //ajouter une condition pour ne pouvoir roll the dice que si il n'y a pas de composant question actif
     gameStore.rollDice()
     alertParent()
   }
